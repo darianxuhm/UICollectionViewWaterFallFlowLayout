@@ -1,5 +1,5 @@
 PODS:
-  - UICollectionViewWaterFallFlowLayout (1.0.0)
+  - UICollectionViewWaterFallFlowLayout (1.0.1)
 
 DEPENDENCIES:
   - UICollectionViewWaterFallFlowLayout (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  UICollectionViewWaterFallFlowLayout: c67401e6004a713397ac7e67202befc134383941
+  UICollectionViewWaterFallFlowLayout: fa368bdf1cca7496dc5ac83aabf0a253ed1898e7
 
 PODFILE CHECKSUM: 4cbaae308cdde06f66966a6fdaf32ee296a7396e
 
