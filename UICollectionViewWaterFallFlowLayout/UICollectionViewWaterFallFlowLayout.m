@@ -1,6 +1,6 @@
 //
 //  UICollectionViewWaterFallFlowLayout.m
-//  LMUIKit
+//  UIKit
 //
 //  Created by xuhuiming on 2021/6/25.
 //
@@ -55,6 +55,8 @@
         CGFloat columnSpacing = [self evaluatedMinimumInteritemSpacingForSectionAtIndex:section];
         /// 行间距
         CGFloat lineSpacing = [self evaluatedMinimumLineSpacingForSectionAtIndex:section];
+        /// 每一组多少列
+        NSInteger numberOfColumns = [self evaluatedReferenceNumberOfColumnsInSection:section];
         
         top += sectionInset.top;
         
@@ -72,7 +74,7 @@
         }
         
         [self.columnHeights addObject:[[NSMutableArray alloc] init]];
-        for (int i = 0; i< self.numberOfColumns; i++) {
+        for (int i = 0; i< numberOfColumns; i++) {
             [self.columnHeights[section] addObject:[NSNumber numberWithFloat:top]];
         }
         
@@ -146,7 +148,9 @@
 - (CGFloat)_columnWidthForSection:(NSInteger)section {
     CGFloat columnSpacing = [self evaluatedMinimumInteritemSpacingForSectionAtIndex:section];
     CGFloat width = [self _widthForSection:section];
-    return (width - (self.numberOfColumns - 1) * columnSpacing) / self.numberOfColumns;
+    /// 每一组多少列
+    NSInteger numberOfColumns = [self evaluatedReferenceNumberOfColumnsInSection:section];
+    return (width - (numberOfColumns - 1) * columnSpacing) / numberOfColumns;
 }
 
 /// item宽高
@@ -157,7 +161,10 @@
     if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:heightForItemAtIndexPath:)]) {
         id<UICollectionViewDelegateWaterFallFlowLayout> delegate = (id<UICollectionViewDelegateWaterFallFlowLayout>)self.collectionView.delegate;
         height = [delegate collectionView: self.collectionView layout:self heightForItemAtIndexPath:indexPath];
+    } else {
+        height = width;
     }
+    
     CGSize originalSize = CGSizeMake(width, height);
     if (originalSize.height > 0 && originalSize.width > 0) {
         size.height = originalSize.height / originalSize.width * size.width;
@@ -257,6 +264,22 @@
     } else {
         return self.footerHeight;
     }
+}
+
+
+/// 每一组 多少列
+/// @param section section
+- (NSInteger)evaluatedReferenceNumberOfColumnsInSection:(NSInteger)section {
+    NSInteger numberOfColumns = 0;
+    if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:numberOfColumnsInSection:)]) {
+        id<UICollectionViewDelegateWaterFallFlowLayout> delegate = (id<UICollectionViewDelegateWaterFallFlowLayout>)self.collectionView.delegate;
+        numberOfColumns = [delegate collectionView:self.collectionView layout:self numberOfColumnsInSection:section];
+    } else {
+        numberOfColumns = self.numberOfColumns;
+    }
+    
+    /// 最少1列
+    return numberOfColumns > 0 ? numberOfColumns : 1;
 }
 
 /// 列间隙

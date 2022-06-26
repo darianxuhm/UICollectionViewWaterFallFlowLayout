@@ -1,6 +1,6 @@
 //
 //  UICollectionViewWaterFallFlowLayout.h
-//  LMUIKit
+//  UIKit
 //
 //  Created by xuhuiming on 2021/6/25.
 //
@@ -23,11 +23,30 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol UICollectionViewDelegateWaterFallFlowLayout <UICollectionViewDelegateFlowLayout>
 
 @required
+/// item高度
+/// @param collectionView collectionView
+/// @param collectionViewLayout collectionViewLayout
+/// @param indexPath indexPath
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewWaterFallFlowLayout*)collectionViewLayout heightForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @optional
+/// 头部视图高度
+/// @param collectionView collectionView
+/// @param collectionViewLayout collectionViewLayout
+/// @param section section
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceHeightForHeaderInSection:(NSInteger)section;
+
+/// 尾部视图高度
+/// @param collectionView collectionView
+/// @param collectionViewLayout collectionViewLayout
+/// @param section section
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceHeightForFooterInSection:(NSInteger)section;
+
+/// section组多少列
+/// @param collectionView collectionView
+/// @param collectionViewLayout collectionViewLayout
+/// @param section section
+- (NSInteger)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewWaterFallFlowLayout*)collectionViewLayout numberOfColumnsInSection:(NSInteger)section;
 
 @end
 
