@@ -1,0 +1,16 @@
+PODS:
+  - UICollectionViewWaterFallFlowLayout (1.0.0)
+
+DEPENDENCIES:
+  - UICollectionViewWaterFallFlowLayout (from `../`)
+
+EXTERNAL SOURCES:
+  UICollectionViewWaterFallFlowLayout:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  UICollectionViewWaterFallFlowLayout: c67401e6004a713397ac7e67202befc134383941
+
+PODFILE CHECKSUM: 4cbaae308cdde06f66966a6fdaf32ee296a7396e
+
+COCOAPODS: 1.11.3

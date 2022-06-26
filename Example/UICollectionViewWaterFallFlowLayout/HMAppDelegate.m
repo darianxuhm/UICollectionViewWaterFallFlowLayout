@@ -2,17 +2,20 @@
 //  HMAppDelegate.m
 //  UICollectionViewWaterFallFlowLayout
 //
-//  Created by xuhuiming on 06/26/2022.
-//  Copyright (c) 2022 xuhuiming. All rights reserved.
+//  Created by xuhuiming on 06/26/2021.
+//  Copyright (c) 2021 xuhuiming. All rights reserved.
 //
 
 #import "HMAppDelegate.h"
+#import "ExampleViewController.h"
 
 @implementation HMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [[ExampleViewController alloc] init];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

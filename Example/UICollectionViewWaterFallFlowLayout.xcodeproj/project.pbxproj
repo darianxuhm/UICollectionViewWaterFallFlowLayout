@@ -14,15 +14,14 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* HMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* HMAppDelegate.m */; };
-		6003F5A7195388D20070C39A /* HMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* HMViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		6F5AA35CEBEC42A98801BE9C /* Pods_UICollectionViewWaterFallFlowLayout_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9739B363876574E06596B6C7 /* Pods_UICollectionViewWaterFallFlowLayout_Tests.framework */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		7745A92D2868060D003183CA /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7745A92C2868060D003183CA /* ExampleViewController.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -47,8 +46,6 @@
 		6003F59B195388D20070C39A /* UICollectionViewWaterFallFlowLayout-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewWaterFallFlowLayout-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* HMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HMAppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* HMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HMAppDelegate.m; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* HMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HMViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* HMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HMViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* UICollectionViewWaterFallFlowLayout_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UICollectionViewWaterFallFlowLayout_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -56,17 +53,16 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		67683CC0FBB6EC6CE09342E9 /* UICollectionViewWaterFallFlowLayout.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = UICollectionViewWaterFallFlowLayout.podspec; path = ../UICollectionViewWaterFallFlowLayout.podspec; sourceTree = "<group>"; };
+		67683CC0FBB6EC6CE09342E9 /* UICollectionViewWaterFallFlowLayout.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = UICollectionViewWaterFallFlowLayout.podspec; path = ../UICollectionViewWaterFallFlowLayout.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7745A92B2868060D003183CA /* ExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExampleViewController.h; sourceTree = "<group>"; };
+		7745A92C2868060D003183CA /* ExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleViewController.m; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9739B363876574E06596B6C7 /* Pods_UICollectionViewWaterFallFlowLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UICollectionViewWaterFallFlowLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F20D6E6AB90B9A07AED9E2B /* Pods-UICollectionViewWaterFallFlowLayout_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UICollectionViewWaterFallFlowLayout_Example.debug.xcconfig"; path = "Target Support Files/Pods-UICollectionViewWaterFallFlowLayout_Example/Pods-UICollectionViewWaterFallFlowLayout_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		A2124BA2FE3ABF1A4F708FF1 /* Pods-UICollectionViewWaterFallFlowLayout_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UICollectionViewWaterFallFlowLayout_Tests.release.xcconfig"; path = "Target Support Files/Pods-UICollectionViewWaterFallFlowLayout_Tests/Pods-UICollectionViewWaterFallFlowLayout_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		A5B8B1E3157442E2084DEC1F /* Pods-UICollectionViewWaterFallFlowLayout_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UICollectionViewWaterFallFlowLayout_Tests.debug.xcconfig"; path = "Target Support Files/Pods-UICollectionViewWaterFallFlowLayout_Tests/Pods-UICollectionViewWaterFallFlowLayout_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BCF9B8D021F3D6443D96B854 /* Pods_UICollectionViewWaterFallFlowLayout_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UICollectionViewWaterFallFlowLayout_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C91F25E35D16ABB2FDB929E8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		C91F25E35D16ABB2FDB929E8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		CF11BDCC5078497733B04E08 /* Pods-UICollectionViewWaterFallFlowLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UICollectionViewWaterFallFlowLayout_Example.release.xcconfig"; path = "Target Support Files/Pods-UICollectionViewWaterFallFlowLayout_Example/Pods-UICollectionViewWaterFallFlowLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
-		D5675BF2F36E3D5EB6C2354A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D5675BF2F36E3D5EB6C2354A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +84,6 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				6F5AA35CEBEC42A98801BE9C /* Pods_UICollectionViewWaterFallFlowLayout_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +119,6 @@
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
 				BCF9B8D021F3D6443D96B854 /* Pods_UICollectionViewWaterFallFlowLayout_Example.framework */,
-				9739B363876574E06596B6C7 /* Pods_UICollectionViewWaterFallFlowLayout_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -135,8 +129,8 @@
 				6003F59C195388D20070C39A /* HMAppDelegate.h */,
 				6003F59D195388D20070C39A /* HMAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* HMViewController.h */,
-				6003F5A6195388D20070C39A /* HMViewController.m */,
+				7745A92B2868060D003183CA /* ExampleViewController.h */,
+				7745A92C2868060D003183CA /* ExampleViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -190,10 +184,7 @@
 			children = (
 				9F20D6E6AB90B9A07AED9E2B /* Pods-UICollectionViewWaterFallFlowLayout_Example.debug.xcconfig */,
 				CF11BDCC5078497733B04E08 /* Pods-UICollectionViewWaterFallFlowLayout_Example.release.xcconfig */,
-				A5B8B1E3157442E2084DEC1F /* Pods-UICollectionViewWaterFallFlowLayout_Tests.debug.xcconfig */,
-				A2124BA2FE3ABF1A4F708FF1 /* Pods-UICollectionViewWaterFallFlowLayout_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -208,7 +199,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				20F324183671535F1C662062 /* [CP] Embed Pods Frameworks */,
+				A7C102B60AD0283D13F30DAC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -223,11 +214,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "UICollectionViewWaterFallFlowLayout_Tests" */;
 			buildPhases = (
-				6E607BD5D402F088CE1DA02D /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				F3AEC00CC89A4275EACB0D69 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -259,6 +248,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -318,7 +308,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		20F324183671535F1C662062 /* [CP] Embed Pods Frameworks */ = {
+		A7C102B60AD0283D13F30DAC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -336,46 +326,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UICollectionViewWaterFallFlowLayout_Example/Pods-UICollectionViewWaterFallFlowLayout_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6E607BD5D402F088CE1DA02D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-UICollectionViewWaterFallFlowLayout_Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F3AEC00CC89A4275EACB0D69 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UICollectionViewWaterFallFlowLayout_Tests/Pods-UICollectionViewWaterFallFlowLayout_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FBSnapshotTestCase/FBSnapshotTestCase.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSnapshotTestCase.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UICollectionViewWaterFallFlowLayout_Tests/Pods-UICollectionViewWaterFallFlowLayout_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -384,7 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* HMAppDelegate.m in Sources */,
-				6003F5A7195388D20070C39A /* HMViewController.m in Sources */,
+				7745A92D2868060D003183CA /* ExampleViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,7 +492,6 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5B8B1E3157442E2084DEC1F /* Pods-UICollectionViewWaterFallFlowLayout_Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -567,7 +516,6 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2124BA2FE3ABF1A4F708FF1 /* Pods-UICollectionViewWaterFallFlowLayout_Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
