@@ -116,6 +116,14 @@
             [self.headerAttributes addObject:attributes];
             [self.allAttributes addObject:attributes];
             top = CGRectGetMaxY(attributes.frame);
+        } else {
+            UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader withIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
+            CGFloat left = sectionInset.left;
+            CGFloat width = self.collectionView.bounds.size.width - sectionInset.left - sectionInset.right;
+            CGFloat height = headerSize.height;
+            attributes.frame = CGRectMake(left, top, width, height);
+            [self.headerAttributes addObject:attributes];
+            [self.allAttributes addObject:attributes];
         }
         
         [self.columnHeights addObject:[[NSMutableArray alloc] init]];
@@ -158,6 +166,14 @@
             
             self.columnHeights[section][columnIndex] = [NSNumber numberWithFloat:(CGRectGetMaxY(attributes.frame) + lineSpacing)];
             
+            [self.footerAttributes addObject:attributes];
+            [self.allAttributes addObject:attributes];
+        } else {
+            UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter withIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
+            CGFloat left = sectionInset.left;
+            CGFloat width = self.collectionView.bounds.size.width - sectionInset.left - sectionInset.right;
+            CGFloat height = ferenceSize.height;
+            attributes.frame = CGRectMake(left, top, width, height);
             [self.footerAttributes addObject:attributes];
             [self.allAttributes addObject:attributes];
         }
@@ -349,9 +365,9 @@
     if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:referenceHeightForHeaderInSection:)]) {
         id<UICollectionViewDelegateWaterFallFlowLayout> delegate = (id<UICollectionViewDelegateWaterFallFlowLayout>)self.collectionView.delegate;
         return [delegate collectionView:self.collectionView layout:self referenceHeightForHeaderInSection:section];
-    } else if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:referenceSizeForFooterInSection:)]) {
+    } else if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:referenceSizeForHeaderInSection:)]) {
         id<UICollectionViewDelegateWaterFallFlowLayout> delegate = (id<UICollectionViewDelegateWaterFallFlowLayout>)self.collectionView.delegate;
-        return [delegate collectionView: self.collectionView layout:self referenceSizeForFooterInSection:section].height;
+        return [delegate collectionView: self.collectionView layout:self referenceSizeForHeaderInSection:section].height;
     } else {
         return self.headerHeight;
     }

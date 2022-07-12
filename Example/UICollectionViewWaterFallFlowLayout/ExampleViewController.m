@@ -177,7 +177,7 @@ static NSString *const UICollectionFooterViewIdentifier = @"UICollectionFooterVi
 }
 
 - (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout backgroundViewColorForSectionAtIndex:(NSInteger)section {
-    return [UIColor redColor];
+    return RandomColor;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout backgroundViewInsetForSectionAtIndex:(NSInteger)section {
