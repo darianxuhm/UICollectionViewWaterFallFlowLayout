@@ -174,6 +174,12 @@
         if (numberOfItems <= 0) {
             continue;
         }
+        
+        /// 不响应背景颜色或者不响应背景边距  不添加背景装饰视图
+        if (![self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:backgroundViewColorForSectionAtIndex:)] || ![self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:backgroundViewInsetForSectionAtIndex:)]) {
+            continue;
+        }
+        
         /// sectio内边距n
         UIEdgeInsets backgroundViewInset = [self evaluatedSectionBackgroundViewInsetForItemAtIndex:section];
         

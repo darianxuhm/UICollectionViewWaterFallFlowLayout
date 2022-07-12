@@ -53,6 +53,7 @@ static NSString *const UICollectionFooterViewIdentifier = @"UICollectionFooterVi
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CollectionViewCellIdentifier];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:UICollectionHeaderViewIdentifier];
