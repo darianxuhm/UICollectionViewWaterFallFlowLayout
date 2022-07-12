@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) CGFloat headerHeight;
 /** 尾部高度 */
 @property (nonatomic , assign) CGFloat footerHeight;
+/** 背景颜色是否包含头部视图 */
+@property (nonatomic , assign) BOOL isIncludedHeader;
+/** 背景颜色是否包含尾部视图 */
+@property (nonatomic , assign) BOOL isIncludedFooter;
 
 @end
 

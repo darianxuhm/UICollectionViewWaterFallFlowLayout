@@ -42,6 +42,8 @@
     layout.numberOfColumns = 2;
     layout.minimumInteritemSpacing = 10;
     layout.minimumLineSpacing = 10;
+    layout.isIncludedHeader = YES;
+    layout.isIncludedFooter = YES;
     layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     return [self initWithCollectionViewLayout:layout];
 }
@@ -53,6 +55,7 @@ static NSString *const UICollectionFooterViewIdentifier = @"UICollectionFooterVi
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:CollectionViewCellIdentifier];
     [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:UICollectionHeaderViewIdentifier];
@@ -171,6 +174,14 @@ static NSString *const UICollectionFooterViewIdentifier = @"UICollectionFooterVi
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceHeightForFooterInSection:(NSInteger)section {
     return 44;
+}
+
+- (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout backgroundViewColorForSectionAtIndex:(NSInteger)section {
+    return [UIColor redColor];
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout backgroundViewInsetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(5, 5, 5, 5);
 }
 
 @end

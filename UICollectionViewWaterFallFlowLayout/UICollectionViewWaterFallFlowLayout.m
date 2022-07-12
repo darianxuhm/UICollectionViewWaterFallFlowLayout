@@ -174,6 +174,12 @@
         if (numberOfItems <= 0) {
             continue;
         }
+        
+        /// 不响应背景颜色或者不响应背景边距  不添加背景装饰视图
+        if (![self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:backgroundViewColorForSectionAtIndex:)] && ![self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:backgroundViewInsetForSectionAtIndex:)]) {
+            continue;
+        }
+        
         /// sectio内边距n
         UIEdgeInsets backgroundViewInset = [self evaluatedSectionBackgroundViewInsetForItemAtIndex:section];
         
@@ -185,6 +191,7 @@
         if (firstItem == nil || lastItem == nil) {
             continue;
         }
+        
         [self registerClass:[UICollectionSectionBackgroundView class] forDecorationViewOfKind:UICollectionSectionBackgroundView.kind];
     
         /// 获取第一个和最后一个item的联合frame ，得到的就是这一组的frame
@@ -417,8 +424,7 @@
         id<UICollectionViewDelegateWaterFallFlowLayout> delegate = (id<UICollectionViewDelegateWaterFallFlowLayout>)self.collectionView.delegate;
         return [delegate collectionView:self.collectionView layout:self backgroundViewInsetForSectionAtIndex:section];
     } else {
-        /// 默认跟section边距一样
-        return [self evaluatedSectionInsetForItemAtIndex:section];
+        return UIEdgeInsetsZero;
     }
 }
 
@@ -436,7 +442,7 @@
         id<UICollectionViewDelegateWaterFallFlowLayout> delegate = (id<UICollectionViewDelegateWaterFallFlowLayout>)self.collectionView.delegate;
         return [delegate collectionView:self.collectionView layout:self backgroundViewIncludedHeaderViewForSectionAtIndex:section];
     } else {
-        return NO;
+        return self.isIncludedHeader;
     }
 }
 
@@ -445,7 +451,7 @@
         id<UICollectionViewDelegateWaterFallFlowLayout> delegate = (id<UICollectionViewDelegateWaterFallFlowLayout>)self.collectionView.delegate;
         return [delegate collectionView:self.collectionView layout:self backgroundViewIncludedFooterViewForSectionAtIndex:section];
     } else {
-        return NO;
+        return self.isIncludedFooter;
     }
 }
 
