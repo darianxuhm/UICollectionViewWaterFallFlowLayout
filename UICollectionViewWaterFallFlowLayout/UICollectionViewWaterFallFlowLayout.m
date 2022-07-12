@@ -7,12 +7,56 @@
 
 #import "UICollectionViewWaterFallFlowLayout.h"
 
+/// 装饰视图属性
+@interface UICollectionSectionBackgroundLayoutAttributes : UICollectionViewLayoutAttributes
+
+/// 添加组背景
+@property (nonatomic, strong) UIColor *backgroundColor;
+
+/// 添加组圆角
+@property (nonatomic, assign) UIRectCorner corners;
+
+/// 添加组圆角的大小
+@property (nonatomic, assign) CGSize sectionCornerRadii;
+
+@end
+
+@implementation UICollectionSectionBackgroundLayoutAttributes
+
+@end
+
+/// 装饰视图
+@interface UICollectionSectionBackgroundView : UICollectionReusableView
+
++ (NSString *)kind;
+
+@end
+
+@implementation UICollectionSectionBackgroundView
+
+- (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
+    [super applyLayoutAttributes:layoutAttributes];
+    
+    if ([layoutAttributes isKindOfClass:[UICollectionSectionBackgroundLayoutAttributes class]]) {
+        UICollectionSectionBackgroundLayoutAttributes * backgroundLayoutAttributes = (UICollectionSectionBackgroundLayoutAttributes *)layoutAttributes;
+        self.backgroundColor = backgroundLayoutAttributes.backgroundColor;
+        self.layer.cornerRadius = 10;
+    }
+}
+
++ (NSString *)kind {
+    return  NSStringFromClass([self class]);
+}
+
+@end
+
 @interface UICollectionViewWaterFallFlowLayout()
 
 @property (nonatomic, strong) NSMutableArray<NSMutableArray<NSNumber *> *> *columnHeights;
 @property (nonatomic, strong) NSMutableArray<NSMutableArray<UICollectionViewLayoutAttributes *> *> *itemAttributes;
 @property (nonatomic, strong) NSMutableArray<UICollectionViewLayoutAttributes *> *footerAttributes;
 @property (nonatomic, strong) NSMutableArray<UICollectionViewLayoutAttributes *> *headerAttributes;
+@property (nonatomic, strong) NSMutableArray<UICollectionViewLayoutAttributes *> *sectionBackgroundAttributes;
 @property (nonatomic, strong) NSMutableArray<UICollectionViewLayoutAttributes *> *allAttributes;
 
 @end
@@ -42,6 +86,7 @@
     self.allAttributes = [[NSMutableArray<UICollectionViewLayoutAttributes *> alloc] init];
     self.headerAttributes = [[NSMutableArray<UICollectionViewLayoutAttributes *> alloc] init];
     self.footerAttributes = [[NSMutableArray<UICollectionViewLayoutAttributes *> alloc] init];
+    self.sectionBackgroundAttributes = [[NSMutableArray<UICollectionViewLayoutAttributes *> alloc] init];
     self.columnHeights = [[NSMutableArray alloc] init];
     
     CGFloat top = 0.0f;
@@ -124,7 +169,60 @@
         for (int idx = 0; idx < sectionCount; idx++) {
             self.columnHeights[section][idx] = [NSNumber numberWithFloat:top];
         }
+        
+        /// 装饰视图
+        if (numberOfItems <= 0) {
+            continue;
+        }
+        /// sectio内边距n
+        UIEdgeInsets backgroundViewInset = [self evaluatedSectionBackgroundViewInsetForItemAtIndex:section];
+        
+        /// 每一组第一个item的Attributes
+        UICollectionViewLayoutAttributes *firstItem = self.itemAttributes[section][0];
+        /// 每一组最后一个item的Attributes
+        UICollectionViewLayoutAttributes *lastItem = self.itemAttributes[section][numberOfItems - 1];
+        /// 满足条件 结束本次循环执行下一次
+        if (firstItem == nil || lastItem == nil) {
+            continue;
+        }
+        [self registerClass:[UICollectionSectionBackgroundView class] forDecorationViewOfKind:UICollectionSectionBackgroundView.kind];
+    
+        /// 获取第一个和最后一个item的联合frame ，得到的就是这一组的frame
+        CGRect sectionFrame = CGRectUnion(firstItem.frame, lastItem.frame);
+        if ([self evaluatedSectionBackgroundViewIncludedHeaderViewForSectionAtIndex:section]) {
+            UICollectionViewLayoutAttributes *headerSectionItem = self.headerAttributes[section];
+            sectionFrame = CGRectUnion(headerSectionItem.frame, sectionFrame);
+        }
+        
+        if ([self evaluatedSectionBackgroundViewIncludedFooterViewForSectionAtIndex:section]) {
+            UICollectionViewLayoutAttributes *footerSectionItem = self.footerAttributes[section];
+            sectionFrame = CGRectUnion(footerSectionItem.frame, sectionFrame);
+        }
+        /// 设置它的x.y  注意理解这里的x点和y点的坐标，不要硬搬，下面这样写的时候是把inset的left的
+        /// 距离包含在sectionFrame 开始x的位置 下面的y同逻辑
+        sectionFrame.origin.x = backgroundViewInset.left;
+        sectionFrame.origin.y -= backgroundViewInset.top;
+        /// 纵向滚动的时候组的宽度  这里的道理和上面的x,y的一样，需要你按照自己项目的实际需求去处理
+        sectionFrame.size.width = (collectionView.frame.size.width - backgroundViewInset.left - backgroundViewInset.right);
+        sectionFrame.size.height += backgroundViewInset.top + backgroundViewInset.bottom;
+        
+        UICollectionViewLayoutAttributes *backgroundLayoutAttributes = [self layoutAttributesForDecorationViewOfKind:UICollectionSectionBackgroundView.kind atIndexPath:[NSIndexPath indexPathForItem:0 inSection:section]];
+        if (backgroundLayoutAttributes != nil) {
+            backgroundLayoutAttributes.frame = sectionFrame;
+            [self.sectionBackgroundAttributes addObject:backgroundLayoutAttributes];
+            [self.allAttributes addObject:backgroundLayoutAttributes];
+        }
     }
+}
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    if ([elementKind isEqualToString:UICollectionSectionBackgroundView.kind]) {
+        UICollectionSectionBackgroundLayoutAttributes *backgroundLayoutAttributes = [UICollectionSectionBackgroundLayoutAttributes layoutAttributesForDecorationViewOfKind:elementKind withIndexPath:indexPath];
+        backgroundLayoutAttributes.zIndex = -1;
+        backgroundLayoutAttributes.backgroundColor = [self evaluatedSectionBackgroundViewColorForItemAtIndex:indexPath.section];
+        return backgroundLayoutAttributes;
+    }
+    return  [super layoutAttributesForDecorationViewOfKind:elementKind atIndexPath:indexPath];
 }
 
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
@@ -266,7 +364,6 @@
     }
 }
 
-
 /// 每一组 多少列
 /// @param section section
 - (NSInteger)evaluatedReferenceNumberOfColumnsInSection:(NSInteger)section {
@@ -310,6 +407,45 @@
         return [delegate collectionView:self.collectionView layout:self insetForSectionAtIndex:section];
     } else {
         return self.sectionInset;
+    }
+}
+
+/// 背景视图section边距
+/// @param section section
+- (UIEdgeInsets)evaluatedSectionBackgroundViewInsetForItemAtIndex:(NSInteger)section {
+    if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:backgroundViewInsetForSectionAtIndex:)]) {
+        id<UICollectionViewDelegateWaterFallFlowLayout> delegate = (id<UICollectionViewDelegateWaterFallFlowLayout>)self.collectionView.delegate;
+        return [delegate collectionView:self.collectionView layout:self backgroundViewInsetForSectionAtIndex:section];
+    } else {
+        /// 默认跟section边距一样
+        return [self evaluatedSectionInsetForItemAtIndex:section];
+    }
+}
+
+- (UIColor *)evaluatedSectionBackgroundViewColorForItemAtIndex:(NSInteger)section {
+    if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:backgroundViewColorForSectionAtIndex:)]) {
+        id<UICollectionViewDelegateWaterFallFlowLayout> delegate = (id<UICollectionViewDelegateWaterFallFlowLayout>)self.collectionView.delegate;
+        return [delegate collectionView:self.collectionView layout:self backgroundViewColorForSectionAtIndex:section];
+    } else {
+        return [UIColor clearColor];
+    }
+}
+
+- (BOOL)evaluatedSectionBackgroundViewIncludedHeaderViewForSectionAtIndex:(NSInteger)section {
+    if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:backgroundViewIncludedHeaderViewForSectionAtIndex:)]) {
+        id<UICollectionViewDelegateWaterFallFlowLayout> delegate = (id<UICollectionViewDelegateWaterFallFlowLayout>)self.collectionView.delegate;
+        return [delegate collectionView:self.collectionView layout:self backgroundViewIncludedHeaderViewForSectionAtIndex:section];
+    } else {
+        return NO;
+    }
+}
+
+- (BOOL)evaluatedSectionBackgroundViewIncludedFooterViewForSectionAtIndex:(NSInteger)section {
+    if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:backgroundViewIncludedFooterViewForSectionAtIndex:)]) {
+        id<UICollectionViewDelegateWaterFallFlowLayout> delegate = (id<UICollectionViewDelegateWaterFallFlowLayout>)self.collectionView.delegate;
+        return [delegate collectionView:self.collectionView layout:self backgroundViewIncludedFooterViewForSectionAtIndex:section];
+    } else {
+        return NO;
     }
 }
 
